@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alejandro Cervantes</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Lobster+Two:wght@400;700&family=Kaushan+Script&family=Electrolize&family=Orbitron:wght@400;700&family=Noto+Sans+JP:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      /* Variables CSS para una paleta de colores synthwave de púrpuras y rojos */
+      :root {
+        --dark-void: #150020; /* Púrpura casi negro, base muy oscura */
+        --deep-violet: #3a005f; /* Violeta oscuro profundo */
+        --electric-purple: #7b00dd; /* Púrpura eléctrico vibrante */
+        --neon-pink: #ff00ff; /* Rosa neón / Magenta puro */
+        --crimson-red: #d90000; /* Rojo carmesí intenso */
+        --burning-orange: #ff4500; /* Naranja rojizo ardiente */
+        --cyber-blue: #00ffff; /* Cian eléctrico para acentos fríos */
+        --white-glow: #f0f8ff; /* Blanco azulado para brillos */
+        --soft-grey-text: #b0b0b0; /* Gris suave para texto secundario */
+      }
+
+      /* Estilos Globales */
+      body {
+        font-family: "Electrolize", sans-serif;
+        background: linear-gradient(
+          160deg,
+          var(--dark-void) 0%,
+          var(--deep-violet) 50%,
+          var(--dark-void) 100%
+        );
+        color: var(--white-glow);
+        margin: 0;
+        line-height: 1.8;
+        /* CAMBIO CLAVE PARA RENDIMIENTO: background-attachment: scroll; */
+        background-attachment: scroll;
+        background-image: linear-gradient(
+            to right,
+            rgba(255, 0, 255, 0.05) 1px,
+            transparent 1px
+          ),
+          /* Opacidad más baja */
+            linear-gradient(
+              to bottom,
+              rgba(255, 0, 255, 0.05) 1px,
+              transparent 1px
+            ); /* Opacidad más baja */
+        background-size: 50px 50px;
+      }
+
+      /* Glitch animado - Ajustado para rendimiento */
+      .glitch-effect {
+        position: relative;
+        will-change: transform, opacity;
+      }
+
+      .glitch-effect::before,
+      .glitch-effect::after {
+        content: attr(data-glitch);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        will-change: transform;
+      }
+
+      .glitch-effect::before {
+        left: 1px; /* Desplazamiento más pequeño */
+        text-shadow: -1px 0 var(--cyber-blue); /* Sombra más sutil */
+        animation: glitch-left 1.8s infinite alternate-reverse linear; /* Animación ligeramente más rápida y menos dramática */
+      }
+
+      .glitch-effect::after {
+        left: -1px; /* Desplazamiento más pequeño */
+        text-shadow: 1px 0 var(--crimson-red); /* Sombra más sutil */
+        animation: glitch-right 1.8s infinite alternate-reverse linear; /* Animación ligeramente más rápida y menos dramática */
+      }
+
+      @keyframes glitch-left {
+        0% {
+          transform: translate(0);
+        }
+        20% {
+          transform: translate(-3px, -1px);
+        } /* Movimientos más pequeños */
+        40% {
+          transform: translate(-2px, 3px);
+        }
+        60% {
+          transform: translate(-5px, -1px);
+        }
+        80% {
+          transform: translate(-2px, 2px);
+        }
+        100% {
+          transform: translate(0);
+        }
+      }
+
+      @keyframes glitch-right {
+        0% {
+          transform: translate(0);
+        }
+        20% {
+          transform: translate(3px, 1px);
+        } /* Movimientos más pequeños */
+        40% {
+          transform: translate(2px, -3px);
+        }
+        60% {
+          transform: translate(5px, 1px);
+        }
+        80% {
+          transform: translate(2px, -2px);
+        }
+        100% {
+          transform: translate(0);
+        }
+      }
+
+      /* Header */
+      #main-header {
+        background-color: var(--dark-void);
+        padding: 2.2rem 0;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Sombra más sutil */
+        border-image: linear-gradient(
+            to right,
+            var(--neon-pink),
+            var(--electric-purple)
+          )
+          1;
+        border-width: 0 0 4px 0;
+        border-style: solid;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        will-change: transform;
+      }
+
+      #main-header h1 {
+        font-family: "Pacifico", cursive;
+        font-size: 5em;
+        background: linear-gradient(
+          90deg,
+          var(--electric-purple),
+          var(--neon-pink),
+          var(--crimson-red)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--electric-purple); /* Sombra ajustada */
+        letter-spacing: 8px;
+        margin-bottom: 0;
+        position: relative;
+      }
+
+      /* Estilo para el texto japonés integrado en el header */
+      .japanese-text-header {
+        font-family: "Noto Sans JP", sans-serif;
+        font-size: 1em;
+        color: rgba(240, 248, 255, 0.5);
+        margin-top: -10px;
+        text-align: center;
+        opacity: 0.7;
+        transition: opacity 0.2s ease, text-shadow 0.2s ease; /* Transición más rápida */
+        display: block;
+        letter-spacing: 1.5px;
+      }
+
+      .japanese-text-header:hover {
+        opacity: 1;
+        text-shadow: 0 0 10px var(--cyber-blue); /* Sombra ajustada */
+      }
+
+      /* --- Nuevo estilo de navegación (The Midnight inspired) --- */
+      #main-nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 2.5rem 0 0 0;
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+      }
+
+      #main-nav ul li a {
+        color: var(--soft-grey-text);
+        text-decoration: none;
+        font-family: "Orbitron", sans-serif;
+        font-weight: 700;
+        font-size: 1.1em;
+        padding: 0.8rem 0;
+        transition: all 0.15s ease-in-out; /* Transición aún más rápida */
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        position: relative;
+        overflow: hidden;
+        border: none;
+        box-shadow: none;
+        will-change: color, text-shadow;
+      }
+
+      #main-nav ul li a::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 0%;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--electric-purple),
+          var(--neon-pink)
+        );
+        transition: all 0.15s ease-in-out; /* Transición aún más rápida */
+        transform: translateX(-50%);
+        will-change: width;
+      }
+
+      #main-nav ul li a:hover {
+        color: var(--white-glow);
+        text-shadow: 0 0 5px var(--neon-pink); /* Sombra ajustada */
+      }
+
+      #main-nav ul li a:hover::after {
+        width: 100%;
+      }
+      /* --- Fin Nuevo estilo de navegación --- */
+
+      /* Contenedor general */
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      /* Secciones */
+      section {
+        padding: 120px 50px;
+        margin-bottom: 80px;
+        background: linear-gradient(
+          135deg,
+          rgba(58, 0, 95, 0.8) 0%,
+          rgba(217, 0, 0, 0.6) 100%
+        );
+        border-radius: 40px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); /* Sombra ajustada */
+        border-image: linear-gradient(
+            45deg,
+            var(--electric-purple),
+            var(--crimson-red)
+          )
+          1;
+        border-width: 4px;
+        border-style: solid;
+        position: relative;
+        overflow: hidden;
+        transition: box-shadow 0.2s ease-in-out; /* Transición más rápida */
+        will-change: box-shadow;
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.05) 1px,
+            transparent 1px
+          ),
+          /* Opacidad más baja */
+            linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+          /* Opacidad más baja */
+            linear-gradient(
+              135deg,
+              rgba(255, 0, 255, 0.02) 0%,
+              rgba(0, 255, 255, 0.02) 100%
+            ); /* Opacidad más baja */
+        background-size: 50px 50px;
+      }
+
+      section:last-of-type {
+        margin-bottom: 0;
+      }
+
+      section:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8), 0 0 20px var(--neon-pink); /* Sombra ajustada */
+      }
+
+      h2 {
+        font-family: "Kaushan Script", cursive;
+        font-size: 4em;
+        background: linear-gradient(
+          90deg,
+          var(--crimson-red),
+          var(--burning-orange),
+          var(--neon-pink)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        margin-bottom: 70px;
+        border-image: linear-gradient(
+            to right,
+            var(--electric-purple),
+            var(--neon-pink)
+          )
+          1;
+        border-width: 0 0 4px 0;
+        border-style: solid;
+        padding-bottom: 25px;
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+        text-shadow: 0 0 8px var(--neon-pink), 0 0 15px var(--burning-orange); /* Sombra ajustada */
+        letter-spacing: 3px;
+        text-transform: capitalize;
+      }
+
+      p {
+        margin-bottom: 30px;
+        color: var(--white-glow);
+        font-size: 1.2em;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9),
+          -1px -1px 2px rgba(0, 0, 0, 0.9), 0 0 5px rgba(0, 0, 0, 0.7); /* Sombra ajustada para legibilidad */
+        line-height: 1.9;
+      }
+
+      /* Botones */
+      .btn {
+        background: linear-gradient(
+          45deg,
+          var(--crimson-red) 0%,
+          var(--neon-pink) 100%
+        );
+        color: var(--dark-void);
+        padding: 20px 45px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 1.3em;
+        font-weight: bold;
+        transition: all 0.15s ease-in-out; /* Transición más rápida */
+        display: inline-block;
+        margin-top: 40px;
+        text-transform: uppercase;
+        letter-spacing: 2.5px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra ajustada */
+        position: relative;
+        overflow: hidden;
+        border: 2px solid transparent;
+        border-image: linear-gradient(
+            45deg,
+            var(--burning-orange),
+            var(--electric-purple)
+          )
+          1;
+        border-width: 2px;
+        font-family: "Orbitron", sans-serif;
+        will-change: transform, box-shadow;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.15); /* Opacidad ajustada */
+        transform: skewX(-20deg); /* Inclinación más sutil */
+        transition: 0.3s; /* Transición más rápida */
+        will-change: transform;
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .btn:hover {
+        background: linear-gradient(
+          45deg,
+          var(--neon-pink) 0%,
+          var(--crimson-red) 100%
+        );
+        transform: translateY(-2px) scale(1.005); /* Transformación sutil */
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7), 0 0 10px var(--neon-pink); /* Sombra ajustada */
+        filter: brightness(1.05); /* Brillo sutil */
+        border-color: var(--electric-purple);
+      }
+
+      /* Galería (cards) */
+      #galeria .gallery-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 50px;
+        margin-top: 80px;
+      }
+
+      .gallery-item {
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 25px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); /* Sombra ajustada */
+        overflow: hidden;
+        flex: 1 1 calc(33% - 100px);
+        max-width: 450px;
+        border: 3px solid var(--electric-purple);
+        transition: box-shadow 0.2s ease, border-color 0.2s ease; /* Transiciones más rápidas */
+        position: relative;
+        will-change: transform, box-shadow;
+      }
+
+      .gallery-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 3px solid transparent;
+        border-radius: 25px;
+        pointer-events: none;
+        transition: all 0.2s ease; /* Transición más rápida */
+      }
+
+      .gallery-item:hover::before {
+        border-color: var(--crimson-red);
+        box-shadow: 0 0 10px var(--crimson-red); /* Sombra ajustada */
+      }
+
+      .gallery-item:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8), 0 0 20px var(--neon-pink); /* Sombra ajustada */
+        border-color: var(--burning-orange);
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        display: block;
+        border-bottom: 3px solid var(--neon-pink);
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+
+      .gallery-item-content {
+        padding: 35px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.5);
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+      }
+
+      .gallery-item-content h3 {
+        font-family: "Lobster Two", cursive;
+        font-weight: 400;
+        font-size: 2.4em;
+        color: var(--electric-purple);
+        margin-top: 0;
+        margin-bottom: 20px;
+        text-shadow: 0 0 6px var(--electric-purple), 0 0 10px var(--neon-pink); /* Sombra ajustada */
+        letter-spacing: 1px;
+        text-transform: capitalize;
+      }
+
+      .gallery-item-content p {
+        font-size: 1.1em;
+        color: var(--soft-grey-text);
+        text-align: justify;
+      }
+
+      /* Sección "Sobre mí" */
+      #about {
+        background: linear-gradient(
+          to top right,
+          rgba(58, 0, 95, 0.8),
+          rgba(21, 0, 32, 0.8)
+        );
+        border-image: linear-gradient(
+            to top right,
+            var(--neon-pink),
+            var(--burning-orange)
+          )
+          1;
+        border-width: 4px;
+        border-radius: 40px;
+      }
+
+      #about p {
+        font-size: 1.15em;
+      }
+
+      #about #curiosity-fact {
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 30px;
+        border-left: 6px solid var(--cyber-blue);
+        margin-top: 50px;
+        border-radius: 15px;
+        font-style: italic;
+        display: none;
+        color: var(--white-glow);
+        font-family: "Electrolize", sans-serif;
+        font-size: 1.2em;
+        text-shadow: 0 0 5px var(--cyber-blue); /* Sombra ajustada */
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.2); /* Sombra ajustada */
+      }
+
+      /* Formulario de contacto */
+      #contact .contact-form {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 60px;
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 40px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7); /* Sombra ajustada */
+        border-image: linear-gradient(
+            45deg,
+            var(--crimson-red),
+            var(--electric-purple)
+          )
+          1;
+        border-width: 4px;
+        border-style: solid;
+      }
+
+      .contact-form label {
+        display: block;
+        margin-bottom: 18px;
+        font-weight: bold;
+        color: var(--electric-purple);
+        font-family: "Orbitron", sans-serif;
+        font-size: 1.3em;
+        letter-spacing: 1.2px;
+        text-shadow: 0 0 8px var(--electric-purple); /* Sombra ajustada */
+      }
+
+      .contact-form input[type="text"],
+      .contact-form input[type="email"],
+      .contact-form textarea {
+        width: calc(100% - 32px);
+        padding: 16px;
+        margin-bottom: 35px;
+        border: 3px solid var(--neon-pink);
+        border-radius: 15px;
+        font-size: 1.2em;
+        background-color: var(--dark-void);
+        color: var(--white-glow);
+        font-family: "Electrolize", sans-serif;
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5); /* Sombra ajustada */
+        transition: border-color 0.2s ease, box-shadow 0.2s ease; /* Transición más rápida */
+        will-change: border-color, box-shadow;
+      }
+
+      .contact-form input::placeholder,
+      .contact-form textarea::placeholder {
+        color: rgba(240, 248, 255, 0.6);
+      }
+
+      .contact-form input::selection,
+      .contact-form textarea::selection {
+        background-color: var(--neon-pink);
+        color: var(--dark-void);
+      }
+
+      .contact-form input:focus::placeholder,
+      .contact-form textarea:focus::placeholder {
+        color: rgba(240, 248, 255, 0.3);
+      }
+
+      .contact-form input[type="text"]:focus,
+      .contact-form input[type="email"]:focus,
+      .contact-form textarea:focus {
+        border-color: var(--cyber-blue);
+        outline: none;
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.7),
+          0 0 15px var(--cyber-blue); /* Sombra ajustada */
+      }
+
+      .contact-form textarea {
+        resize: vertical;
+        min-height: 180px;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--dark-void);
+        color: var(--soft-grey-text);
+        text-align: center;
+        padding: 3.5rem 0;
+        margin-top: 100px;
+        font-size: 1.1em;
+        border-image: linear-gradient(
+            to right,
+            var(--crimson-red),
+            var(--neon-pink)
+          )
+          1;
+        border-width: 4px 0 0 0;
+        border-style: solid;
+        box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.6); /* Sombra ajustada */
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+      }
+
+      footer p {
+        color: var(--soft-grey-text);
+        font-family: "Electrolize", sans-serif;
+        font-size: 1.05em;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+        text-shadow: 0 0 5px rgba(255, 0, 255, 0.1); /* Sombra ajustada */
+      }
+
+      .social-links {
+        margin-top: 30px;
+        font-size: 2.5em;
+      }
+
+      .social-links a {
+        color: var(--electric-purple);
+        margin: 0 20px;
+        transition: color 0.15s ease, transform 0.15s ease,
+          text-shadow 0.15s ease; /* Transiciones más rápidas */
+        text-decoration: none;
+        will-change: color, transform, text-shadow;
+      }
+
+      .social-links a:hover {
+        color: var(--cyber-blue);
+        transform: scale(1.15); /* Transformación sutil */
+        text-shadow: 0 0 10px var(--cyber-blue), 0 0 20px var(--neon-pink); /* Sombras ajustadas */
+      }
+
+      /* Estilos para el texto japonés integrado en el footer (si se mantiene) */
+      .japanese-text-footer {
+        font-family: "Noto Sans JP", sans-serif;
+        font-size: 0.9em;
+        color: rgba(240, 248, 255, 0.4);
+        margin-top: 15px;
+        text-align: center;
+        opacity: 0.5;
+        transition: opacity 0.2s ease; /* Transición más rápida */
+        display: block;
+        letter-spacing: 0.8px;
+      }
+
+      .japanese-text-footer:hover {
+        opacity: 0.8;
+        text-shadow: 0 0 5px var(--cyber-blue); /* Sombra ajustada */
+      }
+
+      /* Estilos Responsivos (ajustados para el nuevo diseño) */
+      @media (max-width: 992px) {
+        #main-header h1 {
+          font-size: 3.8em;
+          letter-spacing: 6px;
+        }
+        .japanese-text-header {
+          font-size: 0.9em;
+          margin-top: -5px;
+        }
+        h2 {
+          font-size: 3.2em;
+          margin-bottom: 60px;
+          letter-spacing: 2px;
+        }
+        section {
+          padding: 100px 40px;
+          border-radius: 30px;
+        }
+        .gallery-item {
+          flex: 1 1 calc(50% - 80px);
+          border-radius: 20px;
+        }
+        .gallery-item-content {
+          border-bottom-left-radius: 20px;
+          border-bottom-right-radius: 20px;
+        }
+        .btn {
+          padding: 18px 40px;
+          font-size: 1.2em;
+          border-radius: 40px;
+        }
+        .contact-form {
+          padding: 50px;
+          border-radius: 30px;
+        }
+        #main-nav ul li a {
+          padding: 0.6rem 0;
+        }
+        #main-header {
+          border-bottom-left-radius: 15px;
+          border-bottom-right-radius: 15px;
+        }
+        footer {
+          border-top-left-radius: 15px;
+          border-top-right-radius: 15px;
+        }
+        .gallery-item-content h3 {
+          font-size: 2em;
+        }
+      }
+
+      @media (max-width: 768px) {
+        #main-header h1 {
+          font-size: 3em;
+          letter-spacing: 4px;
+        }
+        .japanese-text-header {
+          font-size: 0.8em;
+          margin-top: 0px;
+        }
+        #main-nav ul {
+          flex-direction: column;
+          gap: 20px;
+        }
+        #main-nav ul li a {
+          padding: 10px 0;
+          font-size: 1em;
+        }
+        h2 {
+          font-size: 2.6em;
+          margin-bottom: 50px;
+          letter-spacing: 2px;
+        }
+        section {
+          padding: 80px 30px;
+          margin-bottom: 60px;
+          border-radius: 25px;
+        }
+        .gallery-item {
+          flex: 1 1 calc(50% - 60px);
+          max-width: unset;
+          border-radius: 18px;
+        }
+        .gallery-item-content {
+          border-bottom-left-radius: 18px;
+          border-bottom-right-radius: 18px;
+        }
+        .btn {
+          width: 90%;
+          margin: 30px auto;
+          display: block;
+          border-radius: 35px;
+        }
+        .contact-form {
+          padding: 40px;
+          border-radius: 25px;
+        }
+        .contact-form input,
+        .contact-form textarea {
+          width: calc(100% - 28px);
+          border-radius: 12px;
+        }
+        #main-header {
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
+        }
+        footer {
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+        }
+        .gallery-item-content h3 {
+          font-size: 1.8em;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #main-header h1 {
+          font-size: 2.2em;
+          letter-spacing: 2px;
+        }
+        .japanese-text-header {
+          font-size: 0.7em;
+        }
+        h2 {
+          font-size: 2em;
+          margin-bottom: 40px;
+          letter-spacing: 1px;
+        }
+        section {
+          padding: 60px 20px;
+          margin-bottom: 40px;
+          border-radius: 20px;
+        }
+        .gallery-item {
+          flex: 1 1 100%;
+          border-radius: 15px;
+        }
+        .gallery-item-content {
+          border-bottom-left-radius: 15px;
+          border-bottom-right-radius: 15px;
+        }
+        .social-links a {
+          font-size: 2.2em;
+          margin: 0 15px;
+        }
+        footer p {
+          font-size: 1em;
+        }
+        .btn {
+          border-radius: 30px;
+        }
+        .contact-form {
+          border-radius: 20px;
+        }
+        #main-header {
+          border-bottom-left-radius: 8px;
+          border-bottom-right-radius: 8px;
+        }
+        footer {
+          border-top-left-radius: 8px;
+          border-top-right-radius: 8px;
+        }
+        .gallery-item-content h3 {
+          font-size: 1.6em;
+        }
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <svg
+      style="position: absolute; width: 0; height: 0; overflow: hidden"
+      aria-hidden="true"
+    >
+      <filter id="glitch-filter">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.05"
+          numOctaves="1"
+          result="noise"
+        ></feTurbulence>
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="noise"
+          scale="5"
+          xChannelSelector="R"
+          yChannelSelector="G"
+        ></feDisplacementMap>
+      </filter>
+    </svg>
+
+    <header id="main-header">
+      <div class="container">
+        <h1 data-glitch="Alejandro Cervantes">Alejandro Cervantes</h1>
+        <span class="japanese-text-header">アレハンドロ・セルバンテス</span>
+        <nav id="main-nav">
+          <ul>
+            <li><a href="#home">Inicio</a></li>
+            <li><a href="#about">Sobre Mí</a></li>
+            <li><a href="#galeria">Proyectos & Pasiones</a></li>
+            <li><a href="#contact">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section id="home">
+        <h2>¡Hey, soy Alejandro Cervantes!</h2>
+        <p>
+          Soy un estudiante de Psicología fascinado por la complejidad de la
+          mente humana. Pero más allá de los libros, mi mundo vibra al ritmo de
+          la producción musical, las estéticas synthwave y vaporwave, y una
+          profunda pasión por el cine, especialmente esas películas que te
+          atrapan con su atmósfera, como "Drive".
+        </p>
+        <p>
+          En este espacio, comparto un pedacito de lo que me mueve. Desde mis
+          reflexiones sobre la psique hasta mis exploraciones sonoras y
+          visuales. ¡Espero que disfrutes la inmersión!
+        </p>
+        <button id="welcomeButton" class="btn">
+          ¡Haz clic para saludarme!
+        </button>
+      </section>
+
+      <section id="about">
+        <h2>Un Poco Más de Alejandro Cervantes</h2>
+        <p>
+          Desde que tengo memoria, he sido un curioso empedernido. Mi viaje
+          hacia la Psicología no es solo una carrera; es una exploración
+          constante de cómo pensamos, sentimos y nos relacionamos. Me intriga
+          entender las narrativas que nos construyen como individuos y sociedad.
+        </p>
+        <p>
+          Pero la vida no solo se trata de la mente. Cuando no estoy sumergido
+          en teorías psicológicas, me pierdo entre sintetizadores, samples y
+          beats, creando mis propias atmósferas synthwave y vaporwave. Hay algo
+          mágico en esa nostalgia futurista que simplemente me engancha. Y por
+          supuesto, el cine es mi otra gran pasión; desde la dirección artística
+          hasta la banda sonora, cada detalle me absorbe. Películas como "Drive"
+          con su estética nocturna y su música envolvente, me inspiran
+          muchísimo.
+        </p>
+        <button id="showCuriosityBtn" class="btn">
+          ¿Quieres saber un dato curioso sobre mí?
+        </button>
+        <p id="curiosity-fact">Aquí aparecerá un dato curioso sobre mí.</p>
+      </section>
+
+      <section id="galeria">
+        <h2>Mis Proyectos & Pasiones</h2>
+        <p>
+          Aquí te muestro algunos de los proyectos y las expresiones de mis
+          intereses que más me entusiasman. Son un reflejo de mi viaje entre la
+          mente, la música y las imágenes.
+        </p>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img
+              src="https://images.pexels.com/photos/16709841/pexels-photo-16709841.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              alt="Estudios de Psicología"
+            />
+            <div class="gallery-item-content">
+              <h3>Apuntes de Psicología Cognitiva</h3>
+              <p>
+                Explorando los procesos mentales: percepción, memoria, lenguaje.
+                ¡Un viaje fascinante al cerebro!
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.pexels.com/photos/164936/pexels-photo-164936.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              alt="Producción musical Synthwave"
+            />
+            <div class="gallery-item-content">
+              <h3>Ritmos Synthwave Nocturnos</h3>
+              <p>
+                Mis últimas creaciones musicales, sumergiéndome en los sonidos
+                retrofuturistas de los 80.
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.pexels.com/photos/2034851/pexels-photo-2034851.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              alt="Estilo Vaporwave y Cine"
+            />
+            <div class="gallery-item-content">
+              <h3>Inspiraciones Vaporwave & Cine</h3>
+              <p>
+                Una colección visual influenciada por la estética vaporwave y
+                escenas icónicas de películas como "Drive".
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Hablemos</h2>
+        <p>
+          Si tienes alguna pregunta sobre psicología, quieres colaborar en un
+          proyecto musical o simplemente quieres charlar sobre cine y estética
+          retro, ¡no dudes en escribirme!
+        </p>
+        <div class="contact-form">
+          <form id="contactForm">
+            <label for="name">Tu Nombre:</label>
+            <input type="text" id="name" name="name" required />
+
+            <label for="email">Tu Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="message"
+              >Tu Mensaje (¡Sé tan creativo como quieras!):</label
+            >
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit" class="btn">Enviar Mensaje</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>
+          &copy; 2025 Alejandro Cervantes. Todos los derechos reservados. | Un
+          viaje por la mente, la música y el celuloide.
+        </p>
+        <div class="social-links">
+          <a
+            href="#"
+            target="_blank"
+            aria-label="Perfil de LinkedIn de Alejandro Cervantes"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <a
+            href="#"
+            target="_blank"
+            aria-label="Perfil de GitHub de Alejandro Cervantes"
+            ><i class="fab fa-github-square"></i
+          ></a>
+          <a
+            href="#"
+            target="_blank"
+            aria-label="Perfil de Instagram de Alejandro Cervantes"
+            ><i class="fab fa-instagram-square"></i
+          ></a>
+        </div>
+        <span class="japanese-text-footer">アレハンドロ・セルバンテス</span>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('nav a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+              targetElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
+        });
+
+        const welcomeButton = document.getElementById("welcomeButton");
+        if (welcomeButton) {
+          welcomeButton.addEventListener("click", function () {
+            alert(
+              "¡Qué gusto verte por aquí! Espero que disfrutes explorando mi espacio y que encuentres algo interesante sobre psicología, música o cine."
+            );
+          });
+        }
+
+        const showCuriosityBtn = document.getElementById("showCuriosityBtn");
+        const curiosityFactElement = document.getElementById("curiosity-fact");
+        const curiosityFacts = [
+          "Aunque estudio Psicología, mi guilty pleasure es pasar horas experimentando con sintetizadores vintage para lograr ese sonido auténtico de los 80.",
+          "Mi fascinación por el cine va más allá de las películas; a menudo analizo las bandas sonoras y cómo contribuyen a la narrativa, ¡especialmente en el género neo-noir!",
+          "La primera película que me hizo entender el poder de la atmósfera visual y sonora fue, sin duda, 'Drive'. Esa película es una joya.",
+        ];
+        let currentFactIndex = 0;
+
+        if (showCuriosityBtn && curiosityFactElement) {
+          curiosityFactElement.style.display = "none";
+
+          showCuriosityBtn.addEventListener("click", function () {
+            if (curiosityFactElement.style.display === "none") {
+              curiosityFactElement.style.display = "block";
+              curiosityFactElement.textContent =
+                curiosityFacts[currentFactIndex];
+            } else {
+              currentFactIndex = (currentFactIndex + 1) % curiosityFacts.length;
+              curiosityFactElement.textContent =
+                curiosityFacts[currentFactIndex];
+            }
+          });
+        }
+
+        const contactForm = document.getElementById("contactForm");
+        if (contactForm) {
+          contactForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const nameInput = document.getElementById("name");
+            const emailInput = document.getElementById("email");
+            const messageTextarea = document.getElementById("message");
+
+            if (nameInput.value.trim() === "") {
+              alert(
+                "¡Hey! No olvides tu nombre. Me gustaría saber quién me escribe."
+              );
+              nameInput.focus();
+              return;
+            }
+
+            if (emailInput.value.trim() === "") {
+              alert(
+                "Necesito tu correo electrónico para poder responderte, ¡no lo dejes en blanco!"
+              );
+              emailInput.focus();
+              return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value.trim())) {
+              alert(
+                "Parece que el formato de tu email no es correcto. ¿Podrías revisarlo?"
+              );
+              emailInput.focus();
+              return;
+            }
+
+            if (messageTextarea.value.trim() === "") {
+              alert(
+                "¡No te olvides del mensaje! Cuéntame qué tienes en mente."
+              );
+              messageTextarea.focus();
+              return;
+            }
+
+            alert(
+              "¡Mensaje enviado! Genial. Me pondré en contacto contigo tan pronto como pueda. ¡Gracias por pasar por aquí!"
+            );
+            contactForm.reset();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
